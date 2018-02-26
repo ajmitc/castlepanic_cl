@@ -9,6 +9,11 @@ public class Game
 	private List<Wall> _walls;
 	private List<Arc> _arcs;
 	
+	private List<Monster> _monsterPool;
+	
+	private Deck<CastleCard> _castleCards;
+	private Deck<WizardCard> _wizardCards;
+	
 	public Game()
 	{
 		_towers = new ArrayList<>( 6 );
@@ -26,9 +31,26 @@ public class Game
 		_arcs.add( new Arc( 4, Arc.GREEN ) );
 		_arcs.add( new Arc( 5, Arc.BLUE ) );
 		_arcs.add( new Arc( 6, Arc.BLUE ) );
+		
+		_monsterPool = new ArrayList<>();
+		_castleCards = new Deck<>();
+		_wizardCards = new Deck<>();
+	}
+	
+	/**
+	 * Player plays these cards.  There should be one main card (ie. Hit) and any supplement cards (ie. Double Strike)
+	 */
+	public boolean playCards( List<Card> cards )
+	{
+		return false;
 	}
 	
 	public List<Tower> getTowers(){ return _towers; }
 	public List<Wall> getWalls(){ return _walls; }
 	public List<Arc> getArcs>(){ return _arcs; }
+	
+	public List<Monster> getMonsterPool(){ return _monsterPool; }
+	
+	public Deck getCastleCards(){ return _castleCards; }
+	public Deck getWizardCards(){ return _wizardCards; }
 }
