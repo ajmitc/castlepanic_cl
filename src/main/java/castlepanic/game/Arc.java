@@ -26,6 +26,13 @@ public class Arc
 		_rings.add( new Ring( Ring.FOREST,    this ) );
 	}
 	
+	public Ring getRing( int range )
+	{
+		if( range >= Ring.CASTLE && range <= Ring.FOREST )
+			return _rings.get( range - 1 );
+		return null;
+	}
+	
 	public int getNumber(){ return _number; }
 	public Color getColor(){ return _color; }
 	public List<Ring> getRings(){ return _rings; }

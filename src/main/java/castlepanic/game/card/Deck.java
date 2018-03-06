@@ -47,4 +47,6 @@ public class Deck<T>
 		clearDiscard();
 		shuffle();
 	}
+	
+	public int size(){ return _cards.size(); }
 }

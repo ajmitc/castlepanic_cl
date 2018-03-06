@@ -18,9 +18,25 @@ public enum CardEffect
 	HIT_RED_SWORDSMAN,   // Hit 1 Monster in the Red Swordsman Ring
 	HIT_GREEN_SWORDSMAN, // Hit 1 Monster in the Green Swordsman Ring
 	
+	FORTIFY_WALL,
+	CHANGE_COLOR,
+	CHANGE_RANGE,
+	MOVE_BACK_1_SPACE,
+	
+	BRICK,
+	MORTAR,
+	
+	DRAW_2_CARDS,
+	DRAW_CASTLE_CARD_FOR_EVERY_HIT_PLAYED,
+	DISCARD_AND_REDRAW_MULTIPLE,
+	
 	SLAY_NOT_FOREST,     // Slay 1 Monster on board not in forest
 	SLAY,                // Slay 1 Monster on board
-	PLAY_TWICE;          // Play the next card twice
+	PLAY_TWICE,          // Play the next card twice
+	
+	// Wizard cards
+	BUILD_TOWER_WITH_BRICK_OR_MORTAR,
+	HIT_2_MONSTERS_IN_SAME_SPACE_NOT_FOREST;
 	
 	private String _desc;
 	

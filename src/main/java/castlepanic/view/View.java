@@ -9,5 +9,7 @@ public abstract class View
 		_model = model;
 	}
 	
+	public GameMenuItem displayMenu( GameMenu menu );
+	
 	public Model getModel(){ return _model; }
 }

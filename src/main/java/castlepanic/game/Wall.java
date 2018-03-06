@@ -21,4 +21,9 @@ public abstract class Wall
 	
 	public boolean getFire(){ return _fire; }
 	public void setFire( boolean v ){ _fire = v; }
+	
+	public String toString()
+	{
+		return "Wall";
+	}
 }

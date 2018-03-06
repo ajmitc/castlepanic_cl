@@ -31,4 +31,19 @@ public class Monster
 	public void setTar( boolean v ){ _tar = v; }
 	public int getFire(){ return _fire; }
 	public void setFire( int v ){ _fire = v; }
+	
+	public String toString()
+	{
+		StringBuilder sb = new StringBuilder( _type.getName() );
+		sb.append( " (" );
+		sb.append( getHitpoints() );
+		sb.append( "/" );
+		sb.append( getMaxHitpoints() );
+		sb.append( ")" );
+		if( _tar )
+			sb.append( "[tar]" );
+		if( _fire > 0 )
+			sb.append( "[fire-" + _fire + "]" );
+		return sb.toString();
+	}
 }
