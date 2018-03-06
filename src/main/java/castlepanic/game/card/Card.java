@@ -16,4 +16,9 @@ public abstract class Card
 	public String getTitle(){ return _title; }
 	public String getDescription(){ return _description; }
 	public CardEffect getEffect(){ return _effect; }
+
+    public String toString()
+    {
+        return _title + " (" + _description + ")";
+    }
 }

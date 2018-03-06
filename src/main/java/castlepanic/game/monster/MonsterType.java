@@ -51,6 +51,7 @@ public enum MonsterType
 	
 	public String getName(){ return _name; }
 	public int getHitpoints(){ return _hitpoints; }
+	public boolean isBoss(){ return _boss; }
 	
 	public String toString(){ return _name; }
 }

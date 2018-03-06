@@ -1,6 +1,6 @@
-package leader.view;
+package castlepanic.view;
 
-import leader.Model;
+import castlepanic.Model;
 
 public interface GameMenuItemCallback
 {

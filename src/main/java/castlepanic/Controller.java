@@ -1,5 +1,7 @@
 package castlepanic;
 
+import castlepanic.view.View;
+
 public abstract class Controller
 {
 	protected Model _model;

@@ -1,6 +1,6 @@
 package castlepanic.game;
 
-public class BasicWall
+public class BasicWall extends Wall
 {	
 	public BasicWall()
 	{

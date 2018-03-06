@@ -1,5 +1,7 @@
 package castlepanic.view;
 
+import castlepanic.Model;
+
 public abstract class View
 {
 	protected Model _model;
@@ -9,7 +11,8 @@ public abstract class View
 		_model = model;
 	}
 	
-	public GameMenuItem displayMenu( GameMenu menu );
+	public abstract GameMenuItem displayMenu( GameMenu menu );
+	public abstract void refresh();
 	
 	public Model getModel(){ return _model; }
 }

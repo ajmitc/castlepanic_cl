@@ -14,6 +14,7 @@ public abstract class Tower
 	public boolean isDestroyed(){ return _destroyed; }
 	public void setDestroyed( boolean v ){ _destroyed = v; }
 	
-	public boolean getFire(){ return _fire; }
-	public void setFire( boolean v ){ _fire = v; }
+	public int getFire(){ return _fire; }
+	public void setFire( int v ){ _fire = v; }
+	public void adjFire( int v ){ _fire += v; }
 }

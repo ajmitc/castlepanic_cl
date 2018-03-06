@@ -19,8 +19,9 @@ public abstract class Wall
 	public boolean isFortified(){ return _fortified; }
 	public void setFortified( boolean v ){ _fortified = v; }
 	
-	public boolean getFire(){ return _fire; }
-	public void setFire( boolean v ){ _fire = v; }
+	public int getFire(){ return _fire; }
+	public void setFire( int v ){ _fire = v; }
+	public void adjFire( int v ){ _fire += v; }
 	
 	public String toString()
 	{

@@ -3,9 +3,12 @@ package castlepanic.game;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.stream.*;
 
-import castlepanic.monster.*;
-import castlepanic.card.*;
+import java.awt.Color;
+
+import castlepanic.game.monster.*;
+import castlepanic.game.card.*;
 
 public class Game
 {
@@ -65,24 +68,24 @@ public class Game
 	private void buildCastleDeck()
 	{
 		// Hit cards
-		addCastleCard( 1, "Swordsman", "Hit 1 Monster in the Green Swordsman ring.", CardEffect.HIT_GREEN_SWORDSMAN );
-		addCastleCard( 1, "Knight", "Hit 1 Monster in the Green Knight ring.", CardEffect.HIT_GREEN_KNIGHT );
-		addCastleCard( 1, "Archer", "Hit 1 Monster in the Green Archer ring.", CardEffect.HIT_GREEN_ARCHER );
+		addCastleCard( 1, "Green Swordsman", "Hit 1 Monster in the Green Swordsman ring.", CardEffect.HIT_GREEN_SWORDSMAN );
+		addCastleCard( 1, "Green Knight", "Hit 1 Monster in the Green Knight ring.", CardEffect.HIT_GREEN_KNIGHT );
+		addCastleCard( 1, "Green Archer", "Hit 1 Monster in the Green Archer ring.", CardEffect.HIT_GREEN_ARCHER );
 		
-		addCastleCard( 1, "Swordsman", "Hit 1 Monster in the Blue Swordsman ring.", CardEffect.HIT_BLUE_SWORDSMAN );
-		addCastleCard( 1, "Knight", "Hit 1 Monster in the Blue Knight ring.", CardEffect.HIT_BLUE_KNIGHT );
-		addCastleCard( 1, "Archer", "Hit 1 Monster in the Blue Archer ring.", CardEffect.HIT_BLUE_ARCHER );
+		addCastleCard( 1, "Blue Swordsman", "Hit 1 Monster in the Blue Swordsman ring.", CardEffect.HIT_BLUE_SWORDSMAN );
+		addCastleCard( 1, "Blue Knight", "Hit 1 Monster in the Blue Knight ring.", CardEffect.HIT_BLUE_KNIGHT );
+		addCastleCard( 1, "Blue Archer", "Hit 1 Monster in the Blue Archer ring.", CardEffect.HIT_BLUE_ARCHER );
 		
-		addCastleCard( 1, "Swordsman", "Hit 1 Monster in the Red Swordsman ring.", CardEffect.HIT_RED_SWORDSMAN );
-		addCastleCard( 1, "Knight", "Hit 1 Monster in the Red Knight ring.", CardEffect.HIT_RED_KNIGHT );
-		addCastleCard( 1, "Archer", "Hit 1 Monster in the Red Archer ring.", CardEffect.HIT_RED_ARCHER );
+		addCastleCard( 1, "Red Swordsman", "Hit 1 Monster in the Red Swordsman ring.", CardEffect.HIT_RED_SWORDSMAN );
+		addCastleCard( 1, "Red Knight", "Hit 1 Monster in the Red Knight ring.", CardEffect.HIT_RED_KNIGHT );
+		addCastleCard( 1, "Red Archer", "Hit 1 Monster in the Red Archer ring.", CardEffect.HIT_RED_ARCHER );
 		
-		addCastleCard( 1, "Brick", ".", CardEffect.BRICK );
-		addCastleCard( 1, "Mortar", ".", CardEffect.MORTAR );
+		addCastleCard( 1, "Brick", "Play with a Mortar to rebuild 1 Wall.", CardEffect.BRICK );
+		addCastleCard( 1, "Mortar", "Play with a Brick to rebuild 1 Wall.", CardEffect.MORTAR );
 		
 		// Special cards
 		addCastleCard( 1, "Fortify Wall", "Place Fortify token on 1 Wall.  When hit, token damages Monsters and stops Boulders.", CardEffect.FORTIFY_WALL );
-		addCastleCard( 1, "Never Lose Hope", "Immediately discard as many cards as you wish.  For every card you discard, draw 1 Castle card.", CardEffect.DISCARD_AND_REDRAW_MULTIPLE );
+		addCastleCard( 1, "Never Lose Hope", "Immediately discard as many cards as you wish.  For every card you discard, draw 1 Castle card.", CardEffect.DISCARD_AND_DRAW_MULTIPLE );
 		addCastleCard( 1, "Change Color", "Play this card WITH any hit card to change the color of the hit card.", CardEffect.CHANGE_COLOR );
 		addCastleCard( 1, "Change Range", "Play this card WITH any hit card to change the range of the hit card.", CardEffect.CHANGE_RANGE );
 		addCastleCard( 1, "Knock Back", "Play this card WITH a hit card to move the hit Monster back 1 space AFTER damaging it.", CardEffect.MOVE_BACK_1_SPACE );
@@ -90,7 +93,7 @@ public class Game
 		addCastleCard( 1, "Draw 2 Cards", "Play this card to add 2 cards to your hand, even if it exceeds the normal hand size.", CardEffect.DRAW_2_CARDS );
 		addCastleCard( 1, "Berserk", "Draw 1 card from the Castle deck for every hit card you play during the remainder of this turn.", CardEffect.DRAW_CASTLE_CARD_FOR_EVERY_HIT_PLAYED );
 		
-		Collections.shuffle( _castleCards );
+		_castleCards.shuffle();
 	}
 	
 	private void addCastleCard( int count, String title, String desc, CardEffect effect )
@@ -104,7 +107,7 @@ public class Game
 		addWizardCard( 1, "Hypnotize", "2 Monsters in the same space (not the Forest) attack each other simultaneously.", CardEffect.HIT_2_MONSTERS_IN_SAME_SPACE_NOT_FOREST );
 		addWizardCard( 1, "Mystical Manufacturing", "Play this card WITH 1 Brick or 1 Mortar card to rebuild 1 destroyed Tower.", CardEffect.BUILD_TOWER_WITH_BRICK_OR_MORTAR );
 		
-		Collections.shuffle( _wizardCards );
+		_wizardCards.shuffle();
 	}
 	
 	private void addWizardCard( int count, String title, String desc, CardEffect effect )
@@ -115,15 +118,15 @@ public class Game
 	
 	private void buildMonsterPool()
 	{
-		addMonsterToPool( 6, MonsterType.GOBLIN );
+		addMonsterToPool(  6, MonsterType.GOBLIN );
 		addMonsterToPool( 10, MonsterType.ORC );
 		addMonsterToPool( 10, MonsterType.TROLL );
-		addMonsterToPool( 1, MonsterType.GOBLIN_KING );
-		addMonsterToPool( 1, MonsterType.ORC_WARLORD );
-		addMonsterToPool( 1, MonsterTypee.TROLL_MAGE );
-		addMonsterToPool( 2, MonsterType.MOVE_BLUE );
-		addMonsterToPool( 2, MonsterType.MOVE_GREEN );
-		addMonsterToPool( 2, MonsterType.MOVE_RED );
+		addMonsterToPool(  1, MonsterType.GOBLIN_KING );
+		addMonsterToPool(  1, MonsterType.ORC_WARLORD );
+		addMonsterToPool(  1, MonsterType.TROLL_MAGE );
+		addMonsterToPool(  2, MonsterType.MOVE_BLUE );
+		addMonsterToPool(  2, MonsterType.MOVE_GREEN );
+		addMonsterToPool(  2, MonsterType.MOVE_RED );
 		
 		Collections.shuffle( _monsterPool );
 	}
@@ -140,25 +143,26 @@ public class Game
 	
 	public void moveMonsters()
 	{
-		_arcs.stream().flatMap( arc -> arc.getRings() ).flatMap( ring -> ring.getMonsters() ).forEach( monster -> moveMonster( monster ) );
+		_arcs.stream().forEach( arc -> moveMonsters( arc ) );
 	}
 	
 	public void moveMonsters( Arc arc )
 	{
-		arc.getRings().stream().map( ring -> moveMonster( ring ) );
+		arc.getRings().stream().forEach( ring -> moveMonsters( ring ) );
 	}
 	
 	public void moveMonsters( Color color )
 	{
-		_arcs.stream().filter( arc -> arc.getColor() == color ).map( arc -> moveMonsters( arc ) );
+		_arcs.stream().filter( arc -> arc.getColor() == color ).forEach( arc -> moveMonsters( arc ) );
 	}
 	
 	public void moveMonsters( Ring ring )
 	{
-		ring.stream().flatMap( ring -> ring.getMonsters() ).map( monster -> moveMonster( monster, ring ) );
+		List<MoveMonsterSpec> specs = ring.getMonsters().stream().map( monster -> getMoveMonsterSpec( monster, ring ) ).collect( Collectors.toList() );
+        specs.stream().forEach( spec -> moveMonster( spec ) );
 	}
 	
-	public void moveMonster( Monster monster, Ring ring )
+	public MoveMonsterSpec getMoveMonsterSpec( Monster monster, Ring fromRing )
 	{
 		Ring nextRing = null;
 		if( monster.getType() == MonsterType.DRAGON )
@@ -166,48 +170,50 @@ public class Game
 			// TODO Roll dice and lookup in table
 		}
 		// TODO Add other bosses here
-		else if( ring.getRange() == Ring.CASTLE )
+		else if( fromRing.getRange() == Ring.CASTLE )
 		{
 			// Monsters move clockwise
-			Arc nextArc = _arcs.get( (ring.getArc().getNumber() + 1) % 6 );
+			Arc nextArc = _arcs.get( (fromRing.getArc().getNumber() + 1) % 6 );
 			nextRing = nextArc.getRing( Ring.CASTLE );
 		}
 		else
 		{
-			nextRing = ring.getArc().getRing( ring.getRange() - 1 );
+			nextRing = fromRing.getArc().getRing( fromRing.getRange() - 1 );
 		}
 		
 		if( nextRing != null )
 		{
-			moveMonster( monster, ring, nextRing );
+			//moveMonster( monster, fromRing, nextRing );
+            return new MoveMonsterSpec( monster, fromRing, nextRing );
 		}
+        return null;
 	}
 	
-	public void moveMonster( Monster monster, Ring fromRing, Ring toRing )
+	public void moveMonster( MoveMonsterSpec monsterspec )
 	{
 		boolean doMoveMonster = true;
 			
 		// Check if there's a structure (Wall or Tower)
-		if( toRing.getRange() == Ring.CASTLE )
+		if( monsterspec.toRing.getRange() == Ring.CASTLE )
 		{
 			// Check if there's a wall
-			if( fromRing.getRange() == Ring.ARCHER )
+			if( monsterspec.fromRing.getRange() == Ring.ARCHER )
 			{
-				Wall wall = getWall( toRing.getArc().getNumber() );
+				Wall wall = getWall( monsterspec.toRing.getArc().getNumber() );
 				if( !wall.isDestroyed() )
 				{
 					if( wall.getFire() > 0 )
 					{
-						System.out.println( monster.getType() + " catches " + wall.getFire() + " fire from wall!" );
-						monster.adjFire( wall.getFire() );
+						System.out.println( monsterspec.monster.getType() + " catches " + wall.getFire() + " fire from wall!" );
+						monsterspec.monster.adjFire( wall.getFire() );
 					}
 
 					if( wall.isFortified() )
 					{
 						// Damage monster (if no fire) and remove fortified token
 						if( wall.getFire() == 0 )
-							monster.adjHitpoints( -1 );
-						System.out.println( "Wall in Arc " + toRing.getArc().getNumber() + " no longer fortified!" );
+							monsterspec.monster.adjHitpoints( -1 );
+						System.out.println( "Wall in Arc " + monsterspec.toRing.getArc().getNumber() + " no longer fortified!" );
 						wall.setFortified( false );
 					}
 					else
@@ -216,34 +222,34 @@ public class Game
 						if( wall.getFire() == 0 )
 						{
 							// Monster takes damage
-							monster.adjHitpoints( -1 );
+							monsterspec.monster.adjHitpoints( -1 );
 						}
-						System.out.println( "Wall in Arc " + toRing.getArc().getNumber() + " destroyed!" );
+						System.out.println( "Wall in Arc " + monsterspec.toRing.getArc().getNumber() + " destroyed!" );
 						wall.setDestroyed( true );
 					}
 					doMoveMonster = false;
 				}
 			} // end moving from ARCHER ring to CASTLE ring
-			else if( fromRing.getRange() == Ring.CASTLE )
+			else if( monsterspec.fromRing.getRange() == Ring.CASTLE )
 			{
 				// Move from one CASTLE space to another CASTLE space
 				// Check if there's a tower
-				Tower tower = getTower( toRing.getArc().getNumber() );
+				Tower tower = getTower( monsterspec.toRing.getArc().getNumber() );
 				if( !tower.isDestroyed() )
 				{
 					if( tower.getFire() > 0 )
 					{
-						System.out.println( monster.getType() + " catches " + tower.getFire() + " fire from tower!" );
-						monster.adjFire( tower.getFire() );
+						System.out.println( monsterspec.monster.getType() + " catches " + tower.getFire() + " fire from tower!" );
+						monsterspec.monster.adjFire( tower.getFire() );
 					}
 
 					// Tower is destroyed
 					if( tower.getFire() == 0 )
 					{
 						// Monster takes damage
-						monster.adjHitpoints( -1 );
+						monsterspec.monster.adjHitpoints( -1 );
 					}
-					System.out.println( "Tower in Arc " + toRing.getArc().getNumber() + " destroyed!" );
+					System.out.println( "Tower in Arc " + monsterspec.toRing.getArc().getNumber() + " destroyed!" );
 					tower.setDestroyed( true );
 
 					doMoveMonster = false;
@@ -251,15 +257,16 @@ public class Game
 			}
 		}
 
-		if( doMoveMonster && monster.getHitpoints() > 0 )
+		if( doMoveMonster && monsterspec.monster.getHitpoints() > 0 )
 		{
-			fromRing.getMonsters().remove( monster );
-			toRing.getMonsters().add( monster );
+            System.out.println( "Moving " + monsterspec.monster + " from " + monsterspec.fromRing + " ring of Arc " + monsterspec.fromRing.getArc().getNumber() + " to ring " + monsterspec.toRing + " ring of Arc " + monsterspec.toRing.getArc().getNumber() );
+			monsterspec.fromRing.getMonsters().remove( monsterspec.monster );
+			monsterspec.toRing.getMonsters().add( monsterspec.monster );
 		}
 
-		if( monster.getHitpoints() == 0 )
+		if( monsterspec.monster.getHitpoints() == 0 )
 		{
-			System.out.println( monster.getType() + " killed by structure" );
+			System.out.println( monsterspec.monster.getType() + " killed by structure" );
 		}
 	}
 	
@@ -267,12 +274,14 @@ public class Game
 	public void moveMonstersClockwise()
 	{
 		List<Monster> moved = new ArrayList<>();
-		_arcs.stream().flatMap( arc -> arc.getRings() ).forEach( ring -> {
+		_arcs.stream().flatMap( arc -> arc.getRings().stream() ).forEach( ring -> {
 			int arcNumber = ring.getArc().getNumber();
 			int nextArcNumber = (arcNumber + 1) % 6;
 			Ring nextRing = getArc( nextArcNumber ).getRing( ring.getRange() );
+            MoveMonsterSpec spec = new MoveMonsterSpec( null, ring, nextRing );
 			ring.getMonsters().stream().filter( monster -> !moved.contains( monster ) ).forEach( monster -> {
-				moveMonster( monster, ring, nextRing );
+                spec.monster = monster;
+				moveMonster( spec );
 				moved.add( monster );
 			});
 		});
@@ -281,13 +290,15 @@ public class Game
 	public void moveMonstersCounterClockwise()
 	{
 		List<Monster> moved = new ArrayList<>();
-		_arcs.stream().flatMap( arc -> arc.getRings() ).forEach( ring -> {
+		_arcs.stream().flatMap( arc -> arc.getRings().stream() ).forEach( ring -> {
 			int arcNumber = ring.getArc().getNumber();
 			int nextArcNumber = arcNumber - 1;
 			if( nextArcNumber < 1 ) nextArcNumber = 6;
 			Ring nextRing = getArc( nextArcNumber ).getRing( ring.getRange() );
+            MoveMonsterSpec spec = new MoveMonsterSpec( null, ring, nextRing );
 			ring.getMonsters().stream().filter( monster -> !moved.contains( monster ) ).forEach( monster -> {
-				moveMonster( monster, ring, nextRing );
+                spec.monster = monster;
+				moveMonster( spec );
 				moved.add( monster );
 			});
 		});
@@ -298,7 +309,7 @@ public class Game
 	
 	public List<Tower> getTowers(){ return _towers; }
 	public List<Wall> getWalls(){ return _walls; }
-	public List<Arc> getArcs>(){ return _arcs; }
+	public List<Arc> getArcs(){ return _arcs; }
 	
 	public Arc getArc( int arcNumber )
 	{
@@ -323,11 +334,11 @@ public class Game
 	
 	public List<Monster> getMonsterPool(){ return _monsterPool; }
 	
-	public Deck getCastleCards(){ return _castleCards; }
-	public Deck getWizardCards(){ return _wizardCards; }
+	public Deck<CastleCard> getCastleCards(){ return _castleCards; }
+	public Deck<WizardCard> getWizardCards(){ return _wizardCards; }
 	
 	public List<Player> getPlayers(){ return _players; }
-	public void getPlayer( int i ){ return _players.get( i ); }
+	public Player getPlayer( int i ){ return _players.get( i ); }
 	
 	public Player getCurrentPlayer()
 	{
@@ -340,7 +351,19 @@ public class Game
 	}
 	
 	public int getHandSize(){ return _handSize; }
-	public int setHandSize( int s ){ _handSize = s; }
+	public void setHandSize( int s ){ _handSize = s; }
 	
 	
+    private static class MoveMonsterSpec
+    {
+        public Monster monster = null;
+        public Ring fromRing = null;
+        public Ring toRing = null;
+        public MoveMonsterSpec( Monster m, Ring f, Ring t )
+        {
+            monster = m;
+            fromRing = f;
+            toRing = t;
+        }
+    }
 }

@@ -1,6 +1,6 @@
 package castlepanic.view;
 
-import java.io.Scanner;
+import java.util.Scanner;
 
 public class Input
 {	

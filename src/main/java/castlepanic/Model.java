@@ -1,5 +1,7 @@
 package castlepanic;
 
+import castlepanic.game.Game;
+
 public class Model
 {
 	private Game _game;

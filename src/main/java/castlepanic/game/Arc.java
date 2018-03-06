@@ -2,7 +2,7 @@ package castlepanic.game;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Color;
+import java.awt.Color;
 
 public class Arc
 {
@@ -36,4 +36,12 @@ public class Arc
 	public int getNumber(){ return _number; }
 	public Color getColor(){ return _color; }
 	public List<Ring> getRings(){ return _rings; }
+
+	public String getColorName()
+    {
+        if( _color == RED ) return "Red";
+        if( _color == GREEN ) return "Green";
+        if( _color == BLUE ) return "Blue";
+        return "Unknown";
+    }
 }
